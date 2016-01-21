@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Colorfilters</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="style/reset.css">
+	<link rel="stylesheet" type="text/css" href="style/colofilter.css">
+	<script src="js/jquery-1.11.3.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function(){
+
+		$('#assign').click(function(){
+			var getClass=$('#listOfClasses :selected').val();
+			console.log(getClass);
+				if ('#container[class]') {
+			$('#container').removeClass();
+			$('#container').addClass(getClass);
+		}
+		else $('#container').addClass(getClass);
+		});
+
+
+			var fileInput = document.getElementById('fileInput');
+		var fileDisplayArea = document.getElementById('container');
+
+
+		fileInput.addEventListener('change', function(e) {
+			var file = fileInput.files[0];
+			var imageType = /image.*/;
+
+			if (file.type.match(imageType)) {
+				var reader = new FileReader();
+
+				reader.onload = function(e) {
+					fileDisplayArea.innerHTML = "";
+
+					var img = new Image();
+					img.src = reader.result;
+
+					fileDisplayArea.appendChild(img);
+				}
+
+				reader.readAsDataURL(file);	
+			} else {
+				fileDisplayArea.innerHTML = "File not supported!"
+			}
+		});
+	});
+	</script>
+</head>
+<body>
+<div style="margin: 30px auto">
+<form id="data" style="display: flex; justify-content: space-around;">
+	<input type="file" id="fileInput" accept="image/jpeg,image/png,image/gif,image/*">
+	<select id="listOfClasses" form="data">
+		<option value="blend-blue">голубий</option>
+		<option value="blend-blue-dark">темно-синій</option>
+		<option value="blend-blue-light">світло-голубий</option>
+		<option value="blend-orange">помаранчевий</option>
+		<option value="blend-orange-dark">темно-помаранчевий</option>
+		<option value="blend-orange-light">світло-помаранчевий</option>
+		<option value="blend-red">червоний</option>
+		<option value="blend-red-dark">темно-червоний</option>
+		<option value="blend-red-light">світло-червоний</option>
+		<option value="blend-green">зелений</option>
+		<option value="blend-green-dark">темно-зелений</option>
+		<option value="blend-green-light">світло-зелений</option>
+		<option value="blend-yellow">жовтий</option>
+		<option value="blend-yellow-dark">темно-жовтий</option>
+		<option value="blend-yellow-light">світло-жовтий</option>
+		<option value="blend-purple">фіолетовий</option>
+		<option value="blend-purple-dark">темно-фіолетовий</option>
+		<option value="blend-purple-light">світло-фіолетовий</option>
+		<option value="blend-pink">рожевий</option>
+		<option value="blend-pink-dark">темно-рожевий</option>
+		<option value="blend-pink-light">світло-рожевий</option>
+		<option value="blend-blue-yellow">жовто-голубий</option>
+		<option value="blend-blue-yellow-dark"> жовто-голубий темний</option>
+		<option value="blend-blue-yellow-light">жовто-голубий світлий</option>
+		<option value="blend-pink-yellow">жовто-рожевий</option>
+		<option value="blend-pink-yellow-dark">жовто-рожевий темний</option>
+		<option value="blend-pink-yellow-light">жовто-рожевий світлий</option>
+		<option value="blend-red-blue">синьо-червоний</option>
+		<option value="blend-red-blue-dark">синьо-червоний темний</option>
+		<option value="blend-red-blue-light">синьо-червоний світлий</option>
+	</select>
+	<input type="button" id="assign" value="застосувати!" height="40px">
+</form>
+</div>
+<div id="container" style="display: flex; justify-content: center; width: 100%">
+	<img src="img/1.jpg" style="text-align: center; max-width: 1900px; max-height: auto;">
+</div>
+</body>
+</html>
